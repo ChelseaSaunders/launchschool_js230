@@ -6,15 +6,28 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
   </head>
   <body>
-    <script id="post" type="text/x-handlebars-template">
+    <script id="tag" type="text/x-handlebars">
+      <strong>{{this}}</strong>
+    </script>
+
+    <script id="post" type="text/x-handlebars">
+      {{#each posts}}
       <article>
         <h1>{{title}}</h1>
         <p><time>Posted on {{published}}</time></p>
         {{{body}}}
-        {{#each tags}}
-        <p>{{>tag}}</p>
-        {{/each}}
+        {{#if tags}}
+          <p>
+            Tags:
+            {{#each tags}}
+            <p>{{>tag}}</p>
+            {{/each}}
+          </p>
+          {{else}}
+          <p>No tags for this articls</p>
+        {{/if}}
       </article>
+      {{/each}}
     </script>
     <script src="practice_problems_handlebars_basics.js"></script>
     </body>
