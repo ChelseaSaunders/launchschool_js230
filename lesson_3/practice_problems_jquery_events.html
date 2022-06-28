@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Practice Problems jQuery Events</title>
+    <style>
+      html, body {
+        padding: 25px 0;
+        margin: 0;
+        background: #780E24;
+      }
+
+      h1 {
+        font-size: 1.4em;
+        color: #16997c;
+      }
+
+      main {
+        display: block;
+        max-width: 450px;
+        padding: 20px;
+        margin: 0 auto;
+        background: #ffffff;
+        box-sizing: border-box;
+      }
+
+      fieldset {
+        border: none;
+      }
+
+      input[type="text"] {
+        width: 40px;
+        height: 30px;
+        font: normal 24px monospace;
+        vertical-align: middle;
+        box-sizing: border-box;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        background: linear-gradient(to bottom, #f0f0f0 0%, #d5d5d5 100%);
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $("form").on("submit", (event) => {
+          event.preventDefault();
+          let character = $("#key").val();
+
+          $(document).off('keypress').on('keypress', (event) => {
+            if (event.key !== character) return;
+            $("a").trigger("click");
+          });
+        });
+
+        $("a").on("click", (event) => {
+          event.preventDefault();
+          $("#accordion").slideToggle();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <form action="" method="get">
+        <fieldset>
+          <h1>Type A Key to Toggle The Accordion With</h1>
+          <input type="text" id="key" maxlength="1" />
+          <input type="submit" value="Set Key" />
+        </fieldset>
+      </form>
+      <p></p><a href="#">Toggle</a></p>
+      <div id="accordion">
+        <p>This is a paragraph of text. Blah blah blah blah. Etc.</p>
+      </div>
+    </main>
+  </body>
+</html>

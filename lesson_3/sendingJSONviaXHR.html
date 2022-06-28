@@ -1,0 +1,42 @@
+<!-- <script>
+
+</script>
+
+let request = new XMLHttpRequest();
+request.open('POST', 'https://ls-230-book-catalog.herokuapp.com/books');
+
+request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+let data = { title: 'Eloquent JavaScript', author: 'Marijn Haverbeke' };
+let json = JSON.stringify(data);
+
+request.send(json);
+
+Write out the raw text of the HTTP request the last example above will send to
+the server:
+
+POST /books HTTP/1.1
+Host: ls-230-book-catalog.herokuapp.com
+Content-Type: application/json; charset=utf-8
+Accept: */*
+
+{"title": "Eloquent JavaScript", "author": "Marijn Haverbeke"} -->
+<script>
+  function createItem(data) {
+    let json = JSON.stringify(data);
+    let request = new XMLHttpRequest();
+
+    request.open('POST', 'https://ls-230-web-store-demo.herokuapp.com/v1/product');
+    request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    request.setRequestHeader('Authorization', 'AUTH_TOKEN');
+
+    request.addEventListener('load', () => {
+      console.log(`New item added to inventory: ${request.responseText}`)
+    })
+
+    request.send(json);
+  }
+
+  createItem({name: 'chocolate', sku: '012', price: 3});
+</script>
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Practice Problems jQuery Events</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  </head>
+  <body>
+    <script id="post" type="text/x-handlebars-template">
+      <article>
+        <h1>{{title}}</h1>
+        <p><time>Posted on {{published}}</time></p>
+        {{{body}}}
+        {{#each tags}}
+        <p>{{>tag}}</p>
+        {{/each}}
+      </article>
+    </script>
+    <script src="practice_problems_handlebars_basics.js"></script>
+    </body>
+  </html>
