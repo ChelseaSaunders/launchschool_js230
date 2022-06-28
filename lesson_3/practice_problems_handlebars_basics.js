@@ -12,4 +12,4 @@ let posts = [ {
 }];
 
 let postTemplate = Handlebars.compile($('#post').html());
-$('body').append(postTemplate(posts));
+$('body').append(postTemplate({ posts: posts }));
