@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <style>
+      body {
+        background-color: teal;
+      }
+
+      div {
+        background-color: rosybrown;
+      }
+      h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: purple
+      }
+    </style>
+    <script src="arithmetic_calculator.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1 id="total">0</h1>
+      <form action="" method="post">
+        <input type="number" name="first-number" id="first-number" required="true" />
+        <select name="operator" id="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+        <input type="number" name="second-number" id="second-number" required="true" />
+        <input type="submit" value="=" />
+      </form>
+    </div>
+  </body>
+</html>
