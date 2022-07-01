@@ -1,3 +1,5 @@
+"use strict";
+
 /* eslint-disable max-lines-per-function */
 document.addEventListener('DOMContentLoaded', () => {
   let form = document.querySelector('form');
