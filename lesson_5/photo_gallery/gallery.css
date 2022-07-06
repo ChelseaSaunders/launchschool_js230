@@ -56,5 +56,10 @@ li {
 }
 
 li img {
-  border: 3px solid #ffffff;
+  border: 3px solid white;
 }
+
+.selected {
+  border: 3px solid blue;
+}
+

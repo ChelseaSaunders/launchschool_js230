@@ -1,5 +1,6 @@
 "use strict";
 
+// eslint-disable-next-line max-lines-per-function
 document.addEventListener('DOMContentLoaded', () => {
   let thumbnails = document.querySelectorAll('li img');
 
