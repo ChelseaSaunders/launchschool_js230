@@ -74,20 +74,21 @@
       let parentNode = document.getElementById(parentID);
       let innerNode = document.getElementById(innerID);
 
-      if (!parentNode || !innerNode) return 'not a node';
-      if (!bodyChild(parentNode) || !bodyChild(innerNode)) return 'not part of body';
+      if (!parentNode || !innerNode) return;
+      if (!bodyChild(parentNode) || !bodyChild(innerNode)) return;
 
       let slice = [];
 
       function addChildren(node) {
-        slice.unshift(node.nodeName);
+        slice.unshift(node);
         if (node === parentNode) return;
         if (node.parentElement) addChildren(node.parentElement);
       }
 
       addChildren(innerNode);
 
-      return slice;
+      if (!slice.includes(parentNode)) return;
+      return slice.map((node) => node.nodeName);
     }
 
     function bodyChild(node) {
@@ -102,29 +103,26 @@
       return false;
     }
 
-    // console.log(sliceTree('branch', '4'));
-    // // undefined
-    // console.log(sliceTree('4', 'branch'));
-    // // undefined
-    // console.log(sliceTree(1, 76));
-    // // undefined
-    // console.log(sliceTree(76, 1));
-    // // undefined
-
-
+    console.log(sliceTree('branch', '4'));
+    // undefined
+    console.log(sliceTree('4', 'branch'));
+    // undefined
+    console.log(sliceTree(1, 76));
+    // undefined
+    console.log(sliceTree(76, 1));
+    // undefined
     console.log(sliceTree(2, 5));
-    // // undefined
+    // undefined
     console.log(sliceTree(5, 4));
     // unsdefined
 
-    // console.log(sliceTree(1, 4));
-    // // ["ARTICLE", "HEADER", "SPAN", "A"]
-    // console.log(sliceTree(1, 23));
-    // // ["ARTICLE", "FOOTER"]
-    // console.log(sliceTree(1, 22));
-    // // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
-    // console.log(sliceTree(11, 19));
-    // // ["SECTION", "P", "SPAN", "STRONG", "A"]
-
+    console.log(sliceTree(1, 4));
+    // ["ARTICLE", "HEADER", "SPAN", "A"]
+    console.log(sliceTree(1, 23));
+    // ["ARTICLE", "FOOTER"]
+    console.log(sliceTree(1, 22));
+    // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
+    console.log(sliceTree(11, 19));
+    // ["SECTION", "P", "SPAN", "STRONG", "A"]
   </script>
 </html>
