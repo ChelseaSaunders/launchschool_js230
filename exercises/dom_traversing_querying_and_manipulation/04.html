@@ -72,7 +72,7 @@
 
     function sliceTree(parentID, innerID) {
       let parentNode = document.getElementById(parentID);
-      let innerNode = document.getElementById(innerID)
+      let innerNode = document.getElementById(innerID);
 
       if (!parentNode || !innerNode) return 'not a node';
       if (!bodyChild(parentNode) || !bodyChild(innerNode)) return 'not part of body';
@@ -80,17 +80,13 @@
       let slice = [];
 
       function addChildren(node) {
-        slice.push(node.nodeName);
-        console.log(node.getAttribute('id') === String(innerID))
-        if (node.getAttribute('id') === String(innerID)) return;
-
-        for (let i = 0; i < node.children.length; i += 1) {
-          addChildren(node.children[i]);
-        }
+        slice.unshift(node.nodeName);
+        if (node === parentNode) return;
+        if (node.parentElement) addChildren(node.parentElement);
       }
 
-      addChildren(parentNode);
-      // if (!slice.includes(innerNode)) return 'node is not a child of parent';
+      addChildren(innerNode);
+
       return slice;
     }
 
@@ -114,19 +110,21 @@
     // // undefined
     // console.log(sliceTree(76, 1));
     // // undefined
-    // console.log(sliceTree(2, 5));
-    // // // undefined
-    // console.log(sliceTree(5, 4));
-    // // unsdefined
 
-    console.log(sliceTree(1, 4));
-    // ["ARTICLE", "HEADER", "SPAN", "A"]
-    // sliceTree(1, 23);
-    // ["ARTICLE", "FOOTER"]
-    // sliceTree(1, 22);
-    // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
-    // sliceTree(11, 19);
-    // ["SECTION", "P", "SPAN", "STRONG", "A"]
+
+    console.log(sliceTree(2, 5));
+    // // undefined
+    console.log(sliceTree(5, 4));
+    // unsdefined
+
+    // console.log(sliceTree(1, 4));
+    // // ["ARTICLE", "HEADER", "SPAN", "A"]
+    // console.log(sliceTree(1, 23));
+    // // ["ARTICLE", "FOOTER"]
+    // console.log(sliceTree(1, 22));
+    // // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
+    // console.log(sliceTree(11, 19));
+    // // ["SECTION", "P", "SPAN", "STRONG", "A"]
 
   </script>
 </html>
