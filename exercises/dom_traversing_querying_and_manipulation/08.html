@@ -15,8 +15,10 @@
           let name = String(currentArray[0]).toLowerCase().replace(',', '');
           let newElement = document.createElement(name);
           console.log(currentElement);
-          currentElement.appendChild(newElement);
-          recursiveAddNodes(currentArray[1], newElement);
+          currentElement.insertAdjacentElement('afterend', newElement);
+          for (let i = 1; i < currentArray.length; i += 1) {
+            recursiveAddNodes(currentArray[i], newElement);
+          }
         }
 
         recursiveAddNodes(nodesArr[1], body);
