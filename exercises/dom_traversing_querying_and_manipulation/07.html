@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nodes to Array</title>
+  </head>
+  <body>
+    <header id="1"></header>
+    <main id="2">
+      <div></div>
+      <div></div>
+    </main>
+    <footer id="3"></footer>
+  </body>
+  <script>
+
+    function nodesToArr() {
+      let nodesArr = ['BODY', []];
+
+      function recursiveNode(node, currentArr) {
+
+        for (let i = 0; i < node.children.length; i += 1) {
+          currentArr[1].push([node.children[i].nodeName, []])
+          recursiveNode(node.children[i], currentArr[1][1]);
+        }
+      }
+
+      recursiveNode(document.body, nodesArr);
+      return nodesArr;
+    }
+    let finishArr = nodesToArr();
+    finishArr.forEach((element) => console.log(element));
+    // ["BODY",[["HEADER",[]],["MAIN",[["DIV",[]],["DIV",[]]]],["FOOTER",[]]]]
+    // OR
+    // ["BODY", [
+    //   ["HEADER", []],
+    //     ["MAIN", [
+    //       ["DIV", []],
+    //       ["DIV", []]]],
+    //     ["FOOTER",[]]]]
+  </script>
+</html>
+
+<!--
+<!doctype html>
+<html>
+  <head>
+    <title>Nodes to Array</title>
+  </head>
+  <body>
+    <div id="1">
+      <div id="4"></div>
+      <div id="5">
+        <div id="6"></div>
+      </div>
+    </div>
+    <div id="2"></div>
+    <div id="3">
+      <div id="7"></div>
+      <div id="8"></div>
+      <div id="9"></div>
+    </div>
+  </body>
+  <script>
+
+    function nodesToArr() {
+      let nodesArr = ['BODY', []];
+
+      function recursiveNode(node, currentArr) {
+
+        for (let i = 0; i < node.children.length; i += 1) {
+          currentArr[1].push([node.children[i].nodeName, []])
+          recursiveNode(node.children[i], currentArr[1][1]);
+        }
+      }
+
+      recursiveNode(document.body, nodesArr);
+      return nodesArr;
+    }
+    // console.log(nodesToArr());
+    // ["BODY",[["DIV",[["DIV",[]],["DIV",[["DIV",[]]]]]],["DIV",[]],["DIV",[["DIV",[]],["DIV",[]],["DIV",[]]]]]]
+    // OR
+    // ["BODY", [
+    //   ["DIV", [
+    //     ["DIV", []],
+    //     ["DIV", [
+    //       ["DIV",[]]]]]],
+    //   ["DIV", []],
+    //   ["DIV", [
+    //     ["DIV", []],
+    //     ["DIV", []],
+    //     ["DIV", []]]]]]
+  </script>
+</html> -->
+
+<!-- <!doctype html>
+<html>
+  <head>
+    <title>Nodes to Array</title>
+  </head>
+  <body>
+    <header id="1"></header>
+    <main id="2"></main>
+    <footer id="3"></footer>
+  </body>
+  <script>
+    // Implement a function that converts the DOM, starting from the body, to
+    // nested arrays. Each element in the DOM is represented as
+    // ["PARENT_TAG_NAME", [children]] where children are elements as well and
+    // as such follow the same format. When an element has no children, it's
+    // represented as ["PARENT_TAG_NAME", []]. For instance, if the HTML doesn't
+    // have any elements inside the body, the result array would be:
+    // ["BODY", []]. Likewise, if the HTML only has a div element as its
+    // content, the result array would be: ["BODY", [["DIV", []]]].
+
+    function nodesToArr() {
+      let nodesArr = ['BODY', []];
+
+      function recursiveNode(node, currentArr) {
+
+        for (let i = 0; i < node.children.length; i += 1) {
+          currentArr[1].push([node.children[i].nodeName, []])
+          recursiveNode(node.children[i], currentArr[1][1]);
+        }
+      }
+
+      recursiveNode(document.body, nodesArr);
+      return nodesArr;
+    }
+
+    console.log(nodesToArr());
+    // ["BODY",[["HEADER",[]],["MAIN",[]],["FOOTER",[]]]]
+    // OR
+    // ["BODY", [
+    //   ["HEADER", []],
+    //   ["MAIN", []],
+    //   ["FOOTER", []]]]
+  </script>
+</html> -->
+
