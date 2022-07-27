@@ -27,6 +27,7 @@
       recursiveNode(document.body, nodesArr);
       return nodesArr;
     }
+
     let finishArr = nodesToArr();
     finishArr.forEach((element) => console.log(element));
     // ["BODY",[["HEADER",[]],["MAIN",[["DIV",[]],["DIV",[]]]],["FOOTER",[]]]]
