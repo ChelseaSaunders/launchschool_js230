@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Node Swap</title>
+  </head>
+  <body>
+    <div id="1">
+      <div id="4"></div>
+      <div id="5">
+        <div id="6"></div>
+      </div>
+    </div>
+    <div id="2"></div>
+    <div id="3">
+      <div id="7"></div>
+      <div id="8"></div>
+      <div id="9"></div>
+    </div>
+  </body>
+  <script>
+    // Write a function that takes two element ids as arguments and swaps the
+    // positions of the elements represented by the ids. The function returns
+    // true for valid swaps and undefined for invalid. To put the focus on the
+    // node swapping functionality, you can assume that nodes will have a value
+    // for the id attribute and two arguments will always be provided.
+
+    function nodeSwap(id1, id2) {
+      let node1 = document.getElementById(id1);
+      let node2 = document.getElementById(id2);
+      if (!node1 || !node2) return;
+      if (checkIfParent(node1, node2) || checkIfParent(node2, node1)) return;
+
+      function checkIfParent(possChild, possParent) {
+        if (possChild.parentElement === possParent) return true;
+        if (possChild.parentElement) {
+          checkIfParent(possChild.parentElement, possParent);
+        }
+      }
+
+      return true;
+    }
+
+    // // INVALID - return undefined
+    // // non existant node
+    // console.log(nodeSwap(1, 20));
+    // // undefined
+    // // at least one of the nodes is a "child" of the other
+    // console.log(nodeSwap(1, 4));
+    // // undefined
+    // console.log(nodeSwap(9, 3));
+    // // undefined
+
+  </script>
+</html>
