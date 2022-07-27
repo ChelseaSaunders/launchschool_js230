@@ -4,17 +4,17 @@
     <title>Node Swap</title>
   </head>
   <body>
-    <div id="1">
-      <div id="4"></div>
-      <div id="5">
-        <div id="6"></div>
+    <div id="1">1
+      <div id="4">4</div>
+      <div id="5">5
+        <div id="6">6</div>
       </div>
     </div>
-    <div id="2"></div>
-    <div id="3">
-      <div id="7"></div>
-      <div id="8"></div>
-      <div id="9"></div>
+    <div id="2">2</div>
+    <div id="3">3
+      <div id="7">7</div>
+      <div id="8">8</div>
+      <div id="9">9</div>
     </div>
   </body>
   <script>
@@ -37,7 +37,38 @@
         }
       }
 
-      return true;
+      let node1PreviousSibling;
+      let node1Parent;
+      let node2PreviousSibling;
+      let node2Parent;
+
+      if (node1.previousElementSibling) {
+        node1PreviousSibling = node1.previousElementSibling;
+      } else {
+        node1Parent = node1.parentElement;
+      }
+
+      if (node2.previousElementSibling) {
+        node2PreviousSibling = node2.previousElementSibling;
+      } else {
+        node2Parent = node2.parentElement;
+      }
+
+      if (node1PreviousSibling) {
+        node1PreviousSibling.insertAdjacentElement('afterend', node2);
+        if (node2PreviousSibling) {
+          node2PreviousSibling.insertAdjacentElement('afterend', node1);
+        } else {
+          node2Parent.insertAdjacentElement('afterbegin', node1);
+        }
+      } else {
+        node1Parent.insertAdjacentElement('afterbegin', node2);
+        if (node2PreviousSibling) {
+          node2PreviousSibling.insertAdjacentElement('afterend', node1);
+        } else {
+          node2Parent.insertAdjacentElement('afterbegin', node1);
+        }
+      }
     }
 
     // // INVALID - return undefined
