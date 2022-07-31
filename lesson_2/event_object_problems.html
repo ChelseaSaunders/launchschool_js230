@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    .x {
+      position: absolute;
+      transform: rotate(45deg);
+      top: 20px;
+      left: 20px;
+    }
+
+    .x .horizontal {
+      width: 45px;
+      height: 5px;
+      position: absolute;
+      left: -20px;
+      background: red;
+    }
+
+    .x .vertical {
+      height: 45px;
+      width: 5px;
+      background: red;
+      position: absolute;
+      left: 0px;
+      top: -20px;
+    }
+
+    .composer {
+      background: #f5f5f5;
+      padding:  1em;
+      width:  30em;
+    }
+
+    .composer textarea {
+      width: 100%;
+      height: 4em;
+    }
+
+    .composer textarea.invalid {
+      color: red;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // document.addEventListener('mousemove', (event) => {
+      //   let x = document.querySelector('.x');
+      //   x.style.left = String(event.clientX) + "px";
+      //   x.style.top = String(event.clientY) + "px";
+      // });
+
+      // document.addEventListener('keydown', (e) => {
+      //   let key = e.key.toLowerCase();
+      //   let xHorizontal = document.querySelector('.horizontal');
+      //   let xVertical = document.querySelector('.vertical');
+      //   switch (key) {
+      //     case 'b':
+      //       xHorizontal.style.background = 'blue';
+      //       xVertical.style.background = 'blue';
+      //       break;
+      //     case 'g':
+      //       xHorizontal.style.background = 'green';
+      //       xVertical.style.background = 'green';
+      //       break;
+      //     case 'r':
+      //       xHorizontal.style.background = 'red';
+      //       xVertical.style.background = 'red';
+      //       break;
+      //   }
+      // });
+
+      let textArea = document.querySelector('textarea');
+
+      textArea.addEventListener('keyup', () => {
+        let p = document.querySelector('p');
+        let charCount = textArea.value.length;
+        let button = document.querySelector('button');
+
+        p.textContent = `${140 - charCount} charachters remaining`;
+        if (charCount > 140) {
+          textArea.classList.add('invalid');
+          button.disabled = true;
+        }
+        else {
+          textArea.classList.remove('invalid');
+          button.disabled = false;
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- <div class="x">
+    <div class="horizontal"></div>
+    <div class="vertical"></div>
+  </div> -->
+  <div class="composer">
+    <textarea placeholder="Enter your message"></textarea>
+    <p class="counter"></p>
+    <button type="submit">Post Message</button>
+  </div>
+</body>
+
+</html>
